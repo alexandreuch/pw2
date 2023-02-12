@@ -1,6 +1,7 @@
 # PW
 
 npm install express nodemon esm morgan
+npm install nodemon --save-dev
 "start": "npx nodemon -r esm index.js"
 ------------------------------------------------------------
 import express from "express"
