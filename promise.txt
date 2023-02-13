@@ -1,0 +1,56 @@
+import { readFile } from "fs"
+/*
+const promises1 = new Promise((resolve, reject) => {
+    readFile("./segunda.txt", (error, data1) => {
+        if(error) reject(error)
+        resolve(parseInt(data1))
+    })
+})
+
+const promises2 = new Promise((resolve, reject) => {
+    readFile("./terca.txt", (error, data1) => {
+        if(error) reject(error)
+        resolve(parseInt(data1))
+    })
+})
+promises1
+.then((data) => {
+    console.log(data)
+    return promises2
+})
+.then((data) => {
+    console.log(data)
+})
+.catch((data) => {
+    console.log("Error")
+})
+
+*/
+
+function teste(path){
+    return new Promise((resolve, reject) => {
+        readFile(path, (error, data1) => {
+            if(error) reject(error)
+            resolve(parseInt(data1))
+        })
+    })
+}
+
+/*
+teste("segunda.txt")
+.then((data) => {
+    console.log(data)
+    return teste("terca.txt")
+})
+.then((data) => {
+    console.log(data)
+})
+.catch((data) => {
+    console.log("Error")
+})
+*/
+
+Promise.all([teste("segunda.txt"), teste("terca.txt"), teste("quarta.txt")])
+.then(([data1, data2, data3]) => {
+    console.log(data1, data2, data3)
+})

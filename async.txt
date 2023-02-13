@@ -1,0 +1,19 @@
+import { readFile } from "fs"
+
+function teste(path){
+    return new Promise((resolve, reject) => {
+        readFile(path, (error, data1) => {
+            if(error) reject(error)
+            resolve(parseInt(data1))
+        })
+    })
+}
+
+async function soma(){
+    const data1 = await teste("segunda.txt")
+    const data2 = await teste("terca.txt")
+    const data3 = await teste("quarta.txt")
+    return data1 + data2 + data3
+}
+
+soma().then(data => console.log(data))

@@ -1,0 +1,35 @@
+import express from "express"
+import cookieParse from "cookie-parser"
+const morgan = require("morgan")
+
+const app = express()
+const PORT = 4440
+
+app.use(cookieParse())
+
+var count = 0
+
+app.use("/cookie", (req, res) => {
+    if("count" in req.cookies) {
+        count = parseInt(req.cookies.count) + 1
+        res.cookie("count", count, new Date() + 600)
+    }else{
+        count = 0
+        res.cookie("count", count, new Date() + 600)
+        console.log(new Date() + 600)
+    }
+
+    res.send(`${count}`)
+
+})
+
+app.use("/clear", (req, res) => {
+    res.clearCookie('count')
+    res.send("Limpeza")
+})
+
+app.use(morgan("combined"))
+
+app.listen(PORT, () => {
+    console.log(`Escutando a porta ${PORT}`)
+})

@@ -1,0 +1,5 @@
+npm install express nodemon esm morgan
+npm install nodemon --save-dev
+"start": "npx nodemon -r esm index.js"
+
+npm install cookie-parser
