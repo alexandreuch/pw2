@@ -7,7 +7,15 @@ app.use("/sum/:num1/:num2", (req,res)=>{
     res.send(`${parseInt(req.params.num1) + parseInt(req.params.num2)}`)
 })
 
-app.use(morgan("combined"))
+
+/*
+app.use((req, res, next) => {
+	console.log("New User")
+	next()
+	})
+*/
+
+app.use(morgan("dev")) //Middleware
 
 app.listen(PORT, () => {
     console.log(`Escutando a porta ${PORT}`)
